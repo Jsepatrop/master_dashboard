@@ -1,0 +1,36 @@
+# Master Dashboard Agent Requirements
+# Core dependencies
+asyncio-mqtt==0.16.1
+websockets==12.0
+aiohttp==3.9.1
+pyyaml==6.0.1
+psutil==5.9.6
+cryptography==41.0.8
+
+# System monitoring
+py-cpuinfo==9.0.0
+distro==1.8.0
+
+# Hardware sensors (optional, platform-specific)
+pynvml==11.5.0; sys_platform == "linux" or sys_platform == "win32"
+
+# Windows-specific
+pywin32==306; sys_platform == "win32"
+wmi==1.5.1; sys_platform == "win32"
+
+# Linux/Unix-specific
+python-daemon==3.0.1; sys_platform != "win32"
+
+# Networking
+netifaces==0.11.0
+scapy==2.5.0
+
+# Logging and utilities
+colorlog==6.8.0
+click==8.1.7
+rich==13.7.0
+
+# Development and testing (optional)
+pytest==7.4.3
+pytest-asyncio==0.21.1
+pytest-cov==4.1.0

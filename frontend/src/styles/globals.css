@@ -1,0 +1,187 @@
+/* Global styles for Master Dashboard - Cyberpunk Theme */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* CSS Variables */
+:root {
+  --primary-cyan: #00ffff;
+  --primary-purple: #8a2be2;
+  --accent-green: #00ff41;
+  --warning-orange: #ff8c00;
+  --critical-red: #ff0040;
+  --background-dark: #0a0a0a;
+  --surface-dark: #1a1a1a;
+  --card-dark: #2a2a2a;
+  --neon-glow: #00ffff80;
+  
+  /* Gradients */
+  --gradient-cyber: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+  --gradient-neon: linear-gradient(45deg, #00ffff, #8a2be2);
+  
+  /* Shadows */
+  --shadow-neon: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #00ffff;
+  --shadow-neon-purple: 0 0 10px #8a2be2, 0 0 20px #8a2be2, 0 0 30px #8a2be2;
+  --shadow-neon-green: 0 0 10px #00ff41, 0 0 20px #00ff41, 0 0 30px #00ff41;
+  --shadow-neon-red: 0 0 10px #ff0040, 0 0 20px #ff0040, 0 0 30px #ff0040;
+}
+
+/* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+body {
+  font-family: 'Rajdhani', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: var(--gradient-cyber);
+  color: #ffffff;
+  overflow-x: hidden;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Orbitron', monospace;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--surface-dark);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(45deg, var(--primary-cyan), var(--primary-purple));
+  border-radius: 4px;
+  transition: 0.3s;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(45deg, var(--primary-purple), var(--accent-green));
+  box-shadow: var(--shadow-neon);
+}
+
+/* Glow Effects */
+.glow {
+  text-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 30px currentColor;
+}
+
+.glow-red {
+  color: var(--critical-red);
+  text-shadow: var(--shadow-neon-red);
+}
+
+/* Animations */
+@keyframes pulse-neon {
+  0%, 100% {
+    text-shadow: 0 0 5px var(--primary-cyan), 0 0 10px var(--primary-cyan), 0 0 15px var(--primary-cyan);
+  }
+  50% {
+    text-shadow: 0 0 10px var(--primary-cyan), 0 0 20px var(--primary-cyan), 0 0 30px var(--primary-cyan);
+  }
+}
+
+.animate-pulse-neon {
+  animation: pulse-neon 2s ease-in-out infinite;
+}
+
+/* Interactive Elements */
+button, .button {
+  font-family: 'Orbitron', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: 0.3s;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+button:hover, .button:hover {
+  transform: translateY(-2px);
+}
+
+/* Card Styles */
+.card {
+  background: rgba(26, 26, 26, 0.8);
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  border-radius: 8px;
+  backdrop-filter: blur(10px);
+  transition: 0.3s;
+}
+
+.card:hover {
+  border-color: var(--primary-cyan);
+  box-shadow: var(--shadow-neon);
+  transform: translateY(-2px);
+}
+
+/* Custom Utility Classes */
+.text-cyber {
+  background: var(--gradient-neon);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.bg-cyber {
+  background: var(--gradient-cyber);
+}
+
+.shadow-cyber {
+  box-shadow: var(--shadow-neon);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  html {
+    font-size: 14px;
+  }
+  
+  h1 {
+    font-size: 2rem;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+  }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  :root {
+    --primary-cyan: #ffffff;
+    --primary-purple: #ffffff;
+    --accent-green: #ffffff;
+    --warning-orange: #ffff00;
+    --critical-red: #ff0000;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

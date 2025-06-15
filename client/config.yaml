@@ -1,0 +1,93 @@
+# Master Dashboard Agent Configuration
+server:
+  # Master Dashboard server URL
+  url: "http://localhost:8000"
+  # WebSocket URL for real-time communication
+  websocket_url: "ws://localhost:8000/ws"
+  # Reconnection interval in seconds
+  reconnect_interval: 5
+  # Connection timeout
+  timeout: 30
+
+authentication:
+  # API key for server authentication
+  api_key: "your-api-key-here"
+  # Optional: Machine-specific token (auto-generated if not set)
+  machine_token: ""
+
+collection:
+  # Metrics collection interval in seconds
+  interval: 5
+  # Batch size for sending metrics
+  batch_size: 10
+  # Metrics to collect
+  metrics:
+    system: true      # CPU, Memory, Disk usage
+    hardware: true    # Temperature, Fan speeds, Voltages
+    network: true     # Network interface statistics
+    processes: false  # Running processes (disabled by default for privacy)
+  
+  # System metrics configuration
+  system_config:
+    # Include per-core CPU stats
+    per_core_cpu: true
+    # Include disk I/O stats
+    disk_io: true
+    # Include memory details
+    memory_details: true
+  
+  # Hardware sensors configuration
+  hardware_config:
+    # Enable temperature monitoring
+    temperature: true
+    # Enable fan speed monitoring
+    fan_speed: true
+    # Enable voltage monitoring
+    voltage: false
+    # Temperature units (celsius/fahrenheit)
+    temp_unit: "celsius"
+  
+  # Network configuration
+  network_config:
+    # Include interface details
+    interface_details: true
+    # Include connection stats
+    connection_stats: false
+
+logging:
+  # Log level (DEBUG, INFO, WARNING, ERROR, CRITICAL)
+  level: "INFO"
+  # Log file path
+  file: "agent.log"
+  # Maximum log file size in MB
+  max_size: 10
+  # Number of backup log files to keep
+  backup_count: 5
+  # Enable console logging
+  console: true
+
+# Machine identification
+machine:
+  # Custom machine name (auto-detected if not set)
+  name: ""
+  # Machine tags for grouping
+  tags: []
+  # Machine location
+  location: ""
+  # Environment (production, staging, development)
+  environment: "production"
+
+# Advanced settings
+advanced:
+  # Enable debug mode
+  debug: false
+  # Custom user agent
+  user_agent: "MasterDashboard-Agent/1.0"
+  # SSL verification
+  ssl_verify: true
+  # Proxy settings
+  proxy:
+    enabled: false
+    url: ""
+    username: ""
+    password: ""

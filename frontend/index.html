@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob:; script-src 'self' 'unsafe-inline' 'unsafe-eval'; connect-src 'self' ws: wss: http: https:; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline';" />
+    <title>Master Dashboard Revolutionary</title>
+    <meta name="description" content="Revolutionary 3D Infrastructure Monitoring Dashboard" />
+    <meta name="theme-color" content="#00ffff" />
+    <style>
+      /* Loading screen styles */
+      #loading-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        color: #00ffff;
+        font-family: 'Orbitron', monospace;
+      }
+      
+      .loading-spinner {
+        width: 50px;
+        height: 50px;
+        border: 3px solid rgba(0, 255, 255, 0.2);
+        border-top: 3px solid #00ffff;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin-bottom: 20px;
+      }
+      
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      
+      .loading-text {
+        font-size: 18px;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        animation: pulse 2s ease-in-out infinite;
+      }
+      
+      @keyframes pulse {
+        0%, 100% { opacity: 0.6; }
+        50% { opacity: 1; }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="loading-screen">
+      <div class="loading-spinner"></div>
+      <div class="loading-text">Loading Master Dashboard...</div>
+    </div>
+    <div id="root"></div>
+    <script>
+      // Comprehensive error suppression for external scripts
+      window.addEventListener('error', function(e) {
+        if (e.target && e.target.src && (e.target.src.includes('cloudflareinsights.com') || e.target.src.includes('beacon.min.js'))) {
+          e.preventDefault();
+          e.stopPropagation();
+          console.log('External analytics script blocked (expected in dev environment)');
+          return false;
+        }
+      }, true);
+      
+      // Suppress unhandled promise rejections from external scripts
+      window.addEventListener('unhandledrejection', function(e) {
+        if (e.reason && e.reason.toString().includes('cloudflare')) {
+          e.preventDefault();
+          console.log('External script promise rejection suppressed');
+          return false;
+        }
+      });
+      
+      // Override console.error to filter out beacon errors
+      const originalError = console.error;
+      console.error = function() {
+        const message = Array.from(arguments).join(' ');
+        if (!message.includes('beacon.min.js') && !message.includes('cloudflareinsights.com')) {
+          originalError.apply(console, arguments);
+        }
+      };
+      
+      // Hide loading screen when React app is ready
+      window.addEventListener('load', function() {
+        setTimeout(function() {
+          const loadingScreen = document.getElementById('loading-screen');
+          if (loadingScreen) {
+            loadingScreen.style.opacity = '0';
+            loadingScreen.style.transition = 'opacity 0.5s ease-out';
+            setTimeout(() => {
+              loadingScreen.style.display = 'none';
+            }, 500);
+          }
+        }, 1000);
+      });
+    </script>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
